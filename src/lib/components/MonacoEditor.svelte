@@ -7,9 +7,14 @@
     let editor: monaco.editor.IStandaloneCodeEditor;
     let editorContainer!: HTMLDivElement;
 
-    let { getValue = $bindable() }: { getValue: () => string } = $props();
+    let {
+        getValue = $bindable(),
+        setValue = $bindable(),
+    }: { getValue: () => string; setValue?: (value: string) => void } =
+        $props();
 
     getValue = () => editor.getValue();
+    setValue = (v) => editor.setValue(v);
 
     onMount(() => {
         self.MonacoEnvironment = {
